@@ -1,5 +1,6 @@
 package game;
-
+// Simon Ung 101032525
+// Chi Calvin Nguyen 101203877
 import java.util.Scanner;
 
 public class Main {
@@ -61,7 +62,7 @@ public class Main {
             if (si != null) {
 
                 p.buy(si.item);
-                p.withdraw(si.item.cost);
+                p.withdraw((int) si.item.cost);
                 si.numberInStock--;
 
             } else {

@@ -1,13 +1,14 @@
 package game;
-
+// Simon Ung 101032525
+// Chi Calvin Nguyen 101203877
 public class Player {
 
     public String name;
     public Weapon[] backpack;
     public int numItems;
-    public double money;
+    public int money; // int instead of double because UML says so
 
-    public Player(String n, double m) {
+    public Player(String n, int m) {
         name = n;
         money = m;
         numItems = 0;
@@ -21,7 +22,7 @@ public class Player {
         System.out.println(numItems);
     }
 
-    public void withdraw(double amt) {
+    public void withdraw(int amt) {
         money = money - amt;
     }
 

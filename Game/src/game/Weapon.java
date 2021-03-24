@@ -1,5 +1,6 @@
 package game;
-
+// Simon Ung 101032525
+// Chi Calvin Nguyen 101203877
 public class Weapon {
 
     public String weaponName;

@@ -1,5 +1,6 @@
 package game;
-
+// Simon Ung 101032525
+// Chi Calvin Nguyen 101203877
 public class ArrayManager {
 
     int maxItems;    // records the max size of the table
