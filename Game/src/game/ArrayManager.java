@@ -1,6 +1,7 @@
 package game;
 // Simon Ung 101032525
 // Chi Calvin Nguyen 101203877
+
 public class ArrayManager {
 
     int maxItems;    // records the max size of the table
@@ -20,8 +21,12 @@ public class ArrayManager {
         }
 
     }
+    public void deleteKey(String key) { // delete key of weapon
+        root = deleteRec(root, key);
+    }
 
-    public ShopItem get(String key) {
+
+public ShopItem get(String key) {
         int location = 0; //gets location in table based on key
 
         while (location < numItems && key.compareTo(table[location].item.weaponName) != 0) {  // not empty and not item
