@@ -1,28 +1,29 @@
 package game;
 // Simon Ung 101032525
 // Chi Calvin Nguyen 101203877
-public class Player {
+class Player
+    {
+        public String name;
+        public Weapon[] backpack;
+        public int numItems;
+        public double money;
 
-    public String name;
-    public Weapon[] backpack;
-    public int numItems;
-    public int money; // int instead of double because UML says so
+        public Player(String n, double m)
+        {
+            name = n;
+            money = m;
+            numItems = 0;
+            backpack = new Weapon[10];
+        }
 
-    public Player(String n, int m) {
-        name = n;
-        money = m;
-        numItems = 0;
-        backpack = new Weapon[10];  
-    }
-
-      public void buy(Weapon w)
+        public void buy(Weapon w)
         {
             System.out.println(w.weaponName+" bought...");
             backpack[numItems] = w;
             numItems++;
             System.out.println(numItems);
         }
-        public void withdraw(int amt)
+        public void withdraw(double amt)
         {
             money = money - amt;
         }
@@ -40,11 +41,12 @@ public class Player {
 
         public void printBackpack()
         {
-            System.out.println(" "+name+", you own "+numItems+" Weapons:");
+             System.out.println(" "+name+", you own "+numItems+" Weapons:");
             for (int x = 0; x < numItems; x++)
             {
-                System.out.println(" "+backpack[x].weaponName);
+                 System.out.println(" "+backpack[x].weaponName);
             }
             System.out.println();
         }
     }
+
