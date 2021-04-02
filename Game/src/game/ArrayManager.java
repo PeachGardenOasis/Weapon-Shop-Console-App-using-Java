@@ -4,26 +4,26 @@ package game;
 
 public class ArrayManager {
 
-    int maxItems;    // records the max size of the table
-    int numItems;       // records number of items in the list
-    ShopItem[] table; //hashtable itself
+    int maxItems;    
+    int numItems;     
+    ShopItem[] table; 
 
-    public ArrayManager(int size) {
-        maxItems = size;
+    public ArrayManager() {
+        maxItems = 80;
         numItems = 0;
         table = new ShopItem[maxItems];
     }
-
-    public void put(Weapon item, int quantity) {
-        if (numItems < maxItems) {
-            table[numItems] = new ShopItem(item, quantity);
-            numItems++;
-        }
-
-    }
-    public void deleteKey(String key) { // delete key of weapon
-        root = deleteRec(root, key);
-    }
+    
+//    public void put(Weapon item, int quantity) { //adds weapon
+//        if (numItems < maxItems) {
+//            table[numItems] = new ShopItem(item, quantity);
+//            numItems++;
+//        }
+//
+//    }
+//    public void deleteKey(String key) { // delete key of weapon
+//        root = deleteRec(root, key);
+//    }
 
 
 public ShopItem get(String key) {

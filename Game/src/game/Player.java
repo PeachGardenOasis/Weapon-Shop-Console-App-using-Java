@@ -4,7 +4,7 @@ package game;
 public class Player {
 
     public String name;
-    public Backpack backpack;
+    public Weapon[] backpack;
     public int numItems;
     public int money; // int instead of double because UML says so
 
@@ -12,9 +12,7 @@ public class Player {
         name = n;
         money = m;
         numItems = 0;
-        backpack = new Backpack();
-        
-       
+        backpack = new Weapon[10];  
     }
 
       public void buy(Weapon w)
@@ -24,7 +22,7 @@ public class Player {
             numItems++;
             System.out.println(numItems);
         }
-        public void withdraw(double amt)
+        public void withdraw(int amt)
         {
             money = money - amt;
         }

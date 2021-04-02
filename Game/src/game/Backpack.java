@@ -2,6 +2,8 @@ package game;
 // Simon Ung 101032525
 // Chi Calvin Nguyen 101203877
 
+// need to work on 2) delete weapon ,4) view backpack, 5)view player
+
 public class Backpack {
 
     private int numItems;
@@ -37,5 +39,43 @@ public class Backpack {
         value += weapon.range + weapon.damage + weapon.weight + weapon.cost;
 
         return value % tableSize;
+    }
+
+    
+    public boolean add(Weapon weapon, int quantity){
+        if(numItems/tableSize < loadFactor){
+            int loc = quadHashFunction(weapon);
+            int count = 1;
+            int start = loc;
+            while(weaponTable[loc].weaponName.compareTo("EMPTY") != 0 && weaponTable[loc].range != -1 
+                    && weaponTable[loc].damage != -1 && weaponTable[loc].weight != -1 && weaponTable[loc].cost != -1){
+                loc = (start + (count * count)) % tableSize;
+                count++;
+            }
+            weaponTable[loc] = weapon;
+            return true;
+        }
+        return false;
+    }
+    
+    
+    public boolean delete(Weapon weapon){ //delete weapon
+       int loc = quadHashFunction(weapon);
+       int count = 1;
+       int start = loc;
+        while (weaponTable[loc].weaponName.compareTo(weapon.weaponName) != 0) {
+            loc = (start + (count * count)) % tableSize;
+            count++;
+        }
+        if (weaponTable[loc].weaponName.compareTo("EMPTY") != 0 && weaponTable[loc].range != -1) {
+            weaponTable[loc].weaponName = "DELETED";
+            weaponTable[loc].range = -1;
+            weaponTable[loc].damage = -1;
+            weaponTable[loc].weight = -1;
+            weaponTable[loc].cost = -1;
+            numItems--;
+            return true;
+        }
+        return false;
     }
 }
