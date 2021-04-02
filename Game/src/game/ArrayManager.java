@@ -7,14 +7,16 @@ public class ArrayManager {
         int maxItems;    // records the max size of the table
         int numItems;       // records number of items in the list
         ShopItem[] table; //hashtable itself
-
-        public ArrayManager(int size)
+        public double loadFactor;
+        
+        public ArrayManager(int size, double loadFactor)
         {
             maxItems = size;
             numItems = 0;
             table = new ShopItem[maxItems];
+            this.loadFactor=loadFactor;
         }
-
+        
         public void put(Weapon item,int quantity)
         {
             if (numItems<maxItems){             
@@ -23,6 +25,17 @@ public class ArrayManager {
             }
 
         }
+        //quadratic probing hash function
+        public int hashFunction(Weapon wp) {
+        int value = 0, weight = 1;
+        for (int i = 0; i < wp.weaponName.length(); i++) {
+            value += (wp.weaponName.charAt(i) - 'a' + 1) * weight;
+            weight++;
+        }
+        value += wp.cost + wp.damage + wp.range + wp.weight; 
+        return value % tableSize;
+    }
+
 
         public ShopItem get(String key)
         {

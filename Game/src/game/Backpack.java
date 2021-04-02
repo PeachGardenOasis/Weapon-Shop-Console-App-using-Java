@@ -1,9 +1,6 @@
 package game;
 // Simon Ung 101032525
 // Chi Calvin Nguyen 101203877
-
-// need to work on 2) delete weapon ,4) view backpack, 5)view player
-
 public class Backpack {
 
     private int numItems;
