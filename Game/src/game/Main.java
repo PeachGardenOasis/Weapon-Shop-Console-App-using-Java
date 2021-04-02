@@ -145,7 +145,7 @@ public class Main {
             pname=sc.next();
             Player pl= new Player(pname,45);
             ArrayManager ht= new ArrayManager(101,0.8);
-//            addWeapons(ht,sc); all starter code
+//            addWeapons(ht,sc);  starter code
 //            showRoom(ht, pl,sc);
 //            pl.printCharacter();
             displayMenu(ht,pl,sc);
