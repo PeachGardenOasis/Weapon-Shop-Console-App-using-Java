@@ -10,4 +10,9 @@ public class ShopItem {
         item = w;
         numberInStock = nInStock;
     }
+    
+    @Override
+    public String toString() {
+        return ("Name: " + item.weaponName + "   Damage:" + item.damage + "    Cost:" + item.cost + "     Quantity in stock:" + numberInStock);
+    }
 }

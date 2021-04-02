@@ -99,7 +99,7 @@ public class Main {
             System.out.println("");
         }
         
-        public static void displayMenu(ArrayManager ht, Player pl, Scanner sc) {
+        public static void displayMenu() {
         System.out.println("1) Add Items to the shop");
         System.out.println("2) Delete Items from the shop ");
         System.out.println("3) Buy from the Shop");
@@ -110,7 +110,7 @@ public class Main {
         public static void getDecision(ArrayManager ht, Player pl, Scanner sc) {
         String choice = "";
         while (!choice.equals("6")) {
-            displayMenu(ht,pl,sc);
+            displayMenu();
             choice = sc.next();
             sc.nextLine();
             switch (choice) {
@@ -137,6 +137,7 @@ public class Main {
             }
         }
     }
+    
         public static void main(String[] args)
         {
             Scanner sc = new Scanner(System.in);
@@ -145,11 +146,6 @@ public class Main {
             pname=sc.next();
             Player pl= new Player(pname,45);
             ArrayManager ht= new ArrayManager(101,0.8);
-//            addWeapons(ht,sc);  starter code
-//            showRoom(ht, pl,sc);
-//            pl.printCharacter();
-            displayMenu(ht,pl,sc);
-            
-
+            getDecision(ht,pl,sc);
         }
 }

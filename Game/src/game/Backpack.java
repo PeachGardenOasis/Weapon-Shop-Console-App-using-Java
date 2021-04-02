@@ -7,23 +7,23 @@ public class Backpack {
     private int maxItems;
     private double currWeight;
     private double maxWeight;
+    //use a hash table implemented as separate chaining to hold the items (weapons) bought.
+    private LinkedList[] table; 
     
-    private Weapon[] weaponTable;
-    private int tableSize;
+    
     private double loadFactor;
 
-    public Backpack() {
-        weaponTable = new Weapon[80];
-        maxItems = 80;  // max # of weapons is 80
-        Weapon temp = new Weapon("EMPTY", -1, -1, -1, -1);
-        for (int x = 0; x < tableSize; x++) {
-            weaponTable[x] = temp;
-        }
-        loadFactor = 0.70;
+    public Backpack(int size, double lf) {
         numItems = 0;
+        maxItems = size;
+        currWeight = 0;
+        maxWeight = 90;
+        loadFactor = lf;
+        table = new LinkedList[maxItems];
+        
 
     }
 
-
+    
     
 }
