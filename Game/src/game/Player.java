@@ -24,26 +24,29 @@ public class Player {
             numItems++;
             System.out.println(numItems);
         }
-
-
-    public void withdraw(int amt) {
-        money = money - amt;
-    }
-
-    public boolean inventoryFull() {
-        return (numItems == 10);
-    }
-
-    public void printCharacter() {
-        System.out.println(" Name:" + name + "\n Money:" + money);
-        printBackpack();
-    }
-
-    public void printBackpack() {
-        System.out.println(" " + name + ", you own " + numItems + " Weapons:");
-        for (int x = 0; x < numItems; x++) {
-            System.out.println(" " + backpack[x].weaponName);
+        public void withdraw(double amt)
+        {
+            money = money - amt;
         }
-        System.out.println();
+
+        public boolean inventoryFull()
+        {
+            return (numItems == 10) ;
+        }
+
+        public void printCharacter()
+        {
+            System.out.println(" Name:"+name+"\n Money:"+money);
+            printBackpack();
+        }
+
+        public void printBackpack()
+        {
+            System.out.println(" "+name+", you own "+numItems+" Weapons:");
+            for (int x = 0; x < numItems; x++)
+            {
+                System.out.println(" "+backpack[x].weaponName);
+            }
+            System.out.println();
+        }
     }
-}

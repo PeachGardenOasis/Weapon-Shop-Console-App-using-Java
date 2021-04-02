@@ -3,34 +3,39 @@ package game;
 // Chi Calvin Nguyen 101203877
 
 public class Backpack {
-// Aggregation. the dependent object remains in the scope of a relationship even when the source object is destroyed.
-// aggregation with player - backpack can exist with player class or without but player needs backpack to function
-// aggregation with weapon - weapon can exist with backpack class or without but backpack needs weapon to function
 
-    public int numItems;
-    public int maxItems;
-    public double currWeight;
-    public double maxWeight;
-    public String[] table;
-    public int tableSize;
+    private int numItems;
+    private int maxItems;
+    private double currWeight;
+    private double maxWeight;
     
+    private Weapon[] weaponTable;
+    private int tableSize;
+    private double loadFactor;
 
     public Backpack() {
-        numItems = this.numItems;
-        maxItems = this.maxItems;
-        currWeight = 0;
-        maxWeight = 80;
-        table = new String[80];
-        tableSize= 80;
+        weaponTable = new Weapon[80];
+        maxItems = 80;  // max # of weapons is 80
+        Weapon temp = new Weapon("EMPTY", -1, -1, -1, -1);
+        for (int x = 0; x < tableSize; x++) {
+            weaponTable[x] = temp;
+        }
+        loadFactor = 0.70;
+        numItems = 0;
 
-        numItems=0;
-
-    }
-    
-    public boolean add(Weapon k){
-        
     }
 
 
+    private int quadHashFunction(Weapon weapon) {
+        int value = 0;
+        for (int x = 0; x < weapon.weaponName.length(); x++) {
+            value += (weapon.weaponName.charAt(x) - 'a' + 1);
+        }
+        for (int y = 0; y < weapon.weaponName.length(); y++) {
+            value += (weapon.weaponName.charAt(y) - 'a' + 2);
+        }
+        value += weapon.range + weapon.damage + weapon.weight + weapon.cost;
 
+        return value % tableSize;
+    }
 }
