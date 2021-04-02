@@ -50,7 +50,7 @@ public class Main {
             weaponCost = getDouble(sc, "Please enter the Cost of the Weapon:");
             Weapon w = new Weapon(weaponName, weaponRange, weaponDamage, weaponWeight, weaponCost);
             quantity = getInteger(sc, "Please enter the quantity in stock:");
-            h.add(w, quantity);
+            h.put(w, quantity);
             System.out.print("Please enter the NAME of another Weapon ('end' to quit):");
             weaponName = sc.next();
         }
