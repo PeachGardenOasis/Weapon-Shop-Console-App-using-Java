@@ -18,4 +18,23 @@ public class QuadraticProbing {
         value += w.damage + w.range + w.weight + w.cost; // wasnt searching properly with this
         return value % tableSize;
     }
+    
+    public void add(ShopItem[] table, Weapon item, int quantity){
+        int count = 1;
+        int startLoc = quadhashFunction(item);
+        int loc = startLoc;
+        
+        while (table[loc] != null && table[loc].item.weaponName.compareTo(item.weaponName) != 0){  
+            loc = (startLoc + (count * count) % tableSize);
+            count++;
+        }
+        
+        if (table[loc] != null && table[loc].item.weaponName.compareTo(item.weaponName) == 0){
+            table[loc].numberInStock = table[loc].numberInStock + quantity;
+            return;
+        }
+        
+        table[loc] = new ShopItem(item,quantity);
+        return;
+    }
 }

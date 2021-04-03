@@ -19,10 +19,15 @@ public class ArrayManager {
             qp = new QuadraticProbing(maxItems);
         }
         
+        // MODIFIED: Hash Function, Check for existing items & Quadratic Probing
         public void put(Weapon item,int quantity)
         {
             if ((numItems/maxItems) < loadFactor){
                 
+                qp.add(table, item, quantity);
+                numItems++;
+                
+                /* LEGACY
                 // Hash Function Location
                 int count = 1;
                 int startLoc = qp.quadhashFunction(item);
@@ -43,6 +48,7 @@ public class ArrayManager {
                 table[loc] = new ShopItem(item,quantity);
                 numItems++;
                 return;
+                */
             }
 
         }
