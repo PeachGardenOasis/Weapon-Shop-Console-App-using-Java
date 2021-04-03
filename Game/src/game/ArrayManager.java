@@ -4,24 +4,45 @@ package game;
 
 public class ArrayManager {
     
-        int maxItems;    // records the max size of the table
-        int numItems;       // records number of items in the list
-        ShopItem[] table; //hashtable itself
-        public double loadFactor;
+        int maxItems;                   // records the max size of the table
+        int numItems;                   // records number of items in the list
+        ShopItem[] table;               // hashtable itself
+        public double loadFactor;       // load factor of hash table
+        private QuadraticProbing qp;    // hash function
         
         public ArrayManager(int size, double loadFactor)
         {
             maxItems = size;
             numItems = 0;
             table = new ShopItem[maxItems];
-            this.loadFactor=loadFactor;
+            this.loadFactor = loadFactor;
+            qp = new QuadraticProbing(maxItems);
         }
         
         public void put(Weapon item,int quantity)
         {
-            if (numItems<maxItems){             
-                table[numItems] = new ShopItem(item,quantity);
+            if ((numItems/maxItems) < loadFactor){
+                
+                // Hash Function Location
+                int count = 1;
+                int startLoc = qp.quadhashFunction(item);
+                int loc = startLoc;
+                
+                // Quadratic probing, finds empty location or location of matching item
+                while (table[loc] != null && table[loc].item.weaponName.compareTo(item.weaponName) != 0){  
+                    loc = (startLoc + (count * count) % maxItems);
+                    count++;
+                }
+                
+                // Checks if item at location has matching name, adds stock if true
+                if (table[loc] != null && table[loc].item.weaponName.compareTo(item.weaponName) == 0){
+                    table[loc].numberInStock = table[loc].numberInStock + quantity;
+                    return;
+                }
+                
+                table[loc] = new ShopItem(item,quantity);
                 numItems++;
+                return;
             }
 
         }
@@ -44,9 +65,11 @@ public class ArrayManager {
         public void printTable()
         {
             int count = 0;
-            for (int x = 0; x < numItems; x++)
+            for (int x = 0; x < maxItems; x++)
             {
+                if(table[x] != null){
                     System.out.println("Name: " +table[x].item.weaponName+"   Damage:"+table[x].item.damage+"    Cost:"+table[x].item.cost+"     Quantity in stock:"+table[x].numberInStock);
+                }
             }
         }
 }
