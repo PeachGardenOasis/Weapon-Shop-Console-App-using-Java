@@ -64,11 +64,33 @@ public class Main {
             }
         }
 
-
+        public static void deleteWeaponMenu(ArrayManager ht){
+            System.out.println("***********WELCOME TO THE WEAPON DELETE MENU*********");
+            ht.printTable("delete");
+            System.out.println("Please select a weapon to delete('end' to quit):");
+        }
+        
+        public static void deleteWeapon(ArrayManager ht, Scanner sc){
+            
+            String choice;
+            deleteWeaponMenu(ht);
+            choice = sc.next();
+            while (choice.compareTo("end") != 0){
+                if(ht.delete(choice)){
+                    System.out.println(choice + " successfully deleted");
+                }
+                else {
+                    System.out.println("Failed to delete: " + choice);
+                }
+                deleteWeaponMenu(ht);
+                choice = sc.next();
+            }
+            System.out.println("");
+        }
 
         public static void showRoomMenu(ArrayManager ht,Player p){
             System.out.println("WELCOME TO THE SHOWROOM!!!!");
-            ht.printTable();
+            ht.printTable("buy");
             System.out.println("You have "+p.money+" money.");
             System.out.println("Please select a weapon to buy('end' to quit):");
         }
@@ -118,7 +140,7 @@ public class Main {
                     addWeapons(ht, sc);
                     break;
                 case "2":
-//                    deleteWeapon(ht, sc);
+                    deleteWeapon(ht, sc);
                     break;
                 case "3":
                     showRoom(ht, pl, sc);

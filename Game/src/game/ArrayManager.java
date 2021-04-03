@@ -87,14 +87,23 @@ public class ArrayManager {
             return toReturn;
         }
 
-        public void printTable()
+        // MODIFIED: Changes output depending if delete or buy 
+        // DELETE WILL SHOW ITEMS WITH 0 STOCK
+        public void printTable(String s)
         {
             int count = 0;
             for (int x = 0; x < maxItems; x++)
             {   
-                // Lists all weapons in the shop that are in stock (greater than 0)
-                if(table[x] != null && table[x].numberInStock > 0){
-                    System.out.println("Name: " +table[x].item.weaponName+"   Damage:"+table[x].item.damage+"    Cost:"+table[x].item.cost+"     Quantity in stock:"+table[x].numberInStock);
+                if(s.compareTo("delete") == 0){
+                    if(table[x] != null){
+                        System.out.println("Name: " +table[x].item.weaponName+"   Damage:"+table[x].item.damage+"    Cost:"+table[x].item.cost+"     Quantity in stock:"+table[x].numberInStock);
+                    }
+                }
+                if(s.compareTo("buy") == 0){
+                    // Lists all weapons in the shop that are in stock (greater than 0)
+                    if(table[x] != null && table[x].numberInStock > 0){
+                        System.out.println("Name: " +table[x].item.weaponName+"   Damage:"+table[x].item.damage+"    Cost:"+table[x].item.cost+"     Quantity in stock:"+table[x].numberInStock);
+                    }
                 }
             }
         }
