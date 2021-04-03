@@ -80,9 +80,11 @@ public class ArrayManager {
             */
         }
         
-        // TO DO: DELETE FUNCTION
-        public void delete(String key){
-            
+        // ADDED: DELETE FUNCTION, TO DO: DELETE MENU
+        public boolean delete(String key){
+            boolean toReturn = qp.delete(table, key);
+            numItems--;
+            return toReturn;
         }
 
         public void printTable()

@@ -74,4 +74,23 @@ public class QuadraticProbing {
 
         return null;
     }
+    
+    public boolean delete(ShopItem[] table, String key){
+        
+        int count = 1;
+        int startLoc = quadhashFunction2(key);
+        int loc = startLoc;
+        
+        while(table[loc] != null && table[loc].item.weaponName.compareTo(key) != 0){
+            loc = (startLoc + (count * count) % tableSize);
+            count++;
+        }
+        
+        if (table[loc] != null && table[loc].item.weaponName.compareTo(key) == 0){
+            table[loc] = null;
+            return true;
+        }
+        
+        return false;
+    }
 }
