@@ -4,11 +4,9 @@ package game;
 
 public class QuadraticProbing {
     private final int tableSize;
-    private final double loadFactor;
     
-    public QuadraticProbing(){
-        tableSize = 100; // Table Size of 100, max weapons = 80
-        loadFactor = 0.8; // Load Factor 0.8
+    public QuadraticProbing(int size){
+        tableSize = size;
     }
     
     public int quadhashFunction(Weapon w) {
