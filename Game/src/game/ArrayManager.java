@@ -26,31 +26,7 @@ public class ArrayManager {
                 
                 qp.add(table, item, quantity);
                 numItems++;
-                
-                /* LEGACY
-                // Hash Function Location
-                int count = 1;
-                int startLoc = qp.quadhashFunction(item);
-                int loc = startLoc;
-                
-                // Quadratic probing, finds empty location or location of matching item
-                while (table[loc] != null && table[loc].item.weaponName.compareTo(item.weaponName) != 0){  
-                    loc = (startLoc + (count * count) % maxItems);
-                    count++;
-                }
-                
-                // Checks if item at location has matching name, adds stock if true
-                if (table[loc] != null && table[loc].item.weaponName.compareTo(item.weaponName) == 0){
-                    table[loc].numberInStock = table[loc].numberInStock + quantity;
-                    return;
-                }
-                
-                table[loc] = new ShopItem(item,quantity);
-                numItems++;
-                return;
-                */
             }
-
         }
 
         // MODIFIED: Checks if item exists in array using hash function and returns it
@@ -58,30 +34,11 @@ public class ArrayManager {
         {
             ShopItem toReturn = qp.get(table, key);
             return toReturn;
-            
-            /* LEGACY
-            // Lowers complexity of hash function for faster get method
-            int count = 1;
-            int startLoc = qp.quadhashFunction2(key); // gets location in table based on key
-            int loc = startLoc;
-            
-            // Exits when it finds an empty location or the matching item
-            while (table[loc] != null && table[loc].item.weaponName.compareTo(key) != 0){
-                loc = (startLoc + (count * count) % maxItems);
-                count++;
-            }
-            
-            // If the location's element matches the item, return the item
-            if (table[loc] != null && table[loc].item.weaponName.compareTo(key) == 0){
-                return table[loc];
-            }
-            
-            return null;
-            */
         }
         
         // ADDED: DELETE FUNCTION, TO DO: DELETE MENU
         public boolean delete(String key){
+            
             boolean toReturn = qp.delete(table, key);
             numItems--;
             return toReturn;

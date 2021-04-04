@@ -100,7 +100,7 @@ public class Main {
             String choice;
             showRoomMenu(ht,p);
             choice=sc.next();
-            while (choice.compareTo("end") != 0 && !p.inventoryFull())
+            while (choice.compareTo("end") != 0 && !p.inventoryFull() && p.overWeight() == true)
             {
                 ShopItem si = ht.get(choice);
                 if (si != null)

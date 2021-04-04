@@ -4,9 +4,11 @@ package game;
 class Player
     {
         public String name;
-        public Weapon[] backpack;
-        public int numItems;
         public double money;
+        public Backpack bp;
+        
+        public Weapon[] backpack;   // TO EDIT
+        public int numItems;        // TO EDIT
 
         public Player(String n, double m)
         {
@@ -14,14 +16,19 @@ class Player
             money = m;
             numItems = 0;
             backpack = new Weapon[10];
+            bp = new Backpack(38, 0.8);
         }
 
+        // TO DO: MODIFY METHOD TO USE proper backpack & modify backpack to add to linked list
         public void buy(Weapon w)
         {
+            bp.buy(w);
             System.out.println(w.weaponName+" bought...");
+            
+            
             backpack[numItems] = w;
             numItems++;
-            System.out.println(numItems);
+            System.out.println(bp.getnumItems());
         }
         public void withdraw(double amt)
         {
@@ -30,7 +37,11 @@ class Player
 
         public boolean inventoryFull()
         {
-            return (numItems == 10) ;
+            return (bp.getnumItems() == 30) ;
+        }
+        
+        public boolean overWeight(){
+            return (bp.getcurrWeight() < 90);
         }
 
         public void printCharacter()

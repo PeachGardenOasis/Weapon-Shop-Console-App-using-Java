@@ -19,7 +19,7 @@ public class QuadraticProbing {
         return value % tableSize;
     }
     
-    private int quadhashFunction2(String w){
+    public int quadhashFunction2(String w){
         int value = 0, weight = 1;
         
         for (int i = 0; i < w.length(); i++){
