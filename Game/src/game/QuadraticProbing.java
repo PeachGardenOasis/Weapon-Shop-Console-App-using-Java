@@ -51,7 +51,6 @@ public class QuadraticProbing {
         }
         
         table[loc] = new ShopItem(item,quantity);
-        return;
     }
     
     public ShopItem get(ShopItem[] table, String key){
@@ -90,7 +89,7 @@ public class QuadraticProbing {
             table[loc] = null;
             return true;
         }
-        
+
         return false;
     }
 }
