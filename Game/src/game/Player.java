@@ -53,18 +53,12 @@ class Player
             printBackpack();
         }
 
-        // TO EDIT: get string from backpack object & print
+        // MODIFIED: Gets string from backpack object & print
         public void printBackpack()
         {
             System.out.println(" " + name + ", you own " + bp.getnumItems() + " Weapons:");
-            /*
-             System.out.println(" "+name+", you own "+numItems+" Weapons:");
-            for (int x = 0; x < bp.getnumItems(); x++)
-            {
-                 System.out.println(" "+backpack[x].weaponName);
-            }
+            System.out.println(bp.printBackpack());
             System.out.println();
-            */
         }
     }
 

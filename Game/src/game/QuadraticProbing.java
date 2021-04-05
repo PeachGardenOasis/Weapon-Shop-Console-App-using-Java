@@ -10,7 +10,7 @@ public class QuadraticProbing {
     }
     
     // Gives up on design of hash function to make search/get more simple
-    private int quadhashFunction2(String w){
+    private int hashFunction2(String w){
         int value = 0, weight = 1;
         
         for (int i = 0; i < w.length(); i++){
@@ -27,7 +27,7 @@ public class QuadraticProbing {
         
         // Hash Function Location
         int count = 1;
-        int startLoc = quadhashFunction2(item.getWeaponName());
+        int startLoc = hashFunction2(item.getWeaponName());
         
         if (startLoc < 0){
             return;
@@ -53,7 +53,7 @@ public class QuadraticProbing {
     public ShopItem getShop(ShopItem[] table, String key){
         
         int count = 1;
-        int startLoc = quadhashFunction2(key); // gets location in table based on key
+        int startLoc = hashFunction2(key); // gets location in table based on key
         int loc = startLoc;
 
         if (startLoc < 0){
@@ -77,7 +77,7 @@ public class QuadraticProbing {
     public boolean deleteShop(ShopItem[] table, String key){
         
         int count = 1;
-        int startLoc = quadhashFunction2(key);
+        int startLoc = hashFunction2(key);
         int loc = startLoc;
         
         if (startLoc < 0){
@@ -99,7 +99,7 @@ public class QuadraticProbing {
     
     // Uses seperate chaining
     public void addBackpack(LinkedList[] table, Weapon item){
-        int loc = quadhashFunction2(item.getWeaponName());
+        int loc = hashFunction2(item.getWeaponName());
         
         if (loc < 0) {
             return;

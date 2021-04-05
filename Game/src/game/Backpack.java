@@ -46,4 +46,19 @@ public class Backpack {
             numItems++;
         }
     }
+    
+    public String printBackpack(){
+        String s = "";
+        for (int x = 0; x < maxItems; x++){
+            if (table[x] != null){
+                Node currNode = table[x].head;
+                while (currNode != null){
+                    s += (" " + currNode.data.getWeaponName());
+                    s += ("\n");
+                    currNode = currNode.next;
+                }
+            }
+        }
+        return s;
+    }
 }
