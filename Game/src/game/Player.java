@@ -6,28 +6,19 @@ class Player
         public String name;
         public double money;
         public Backpack bp;
-        
-        public Weapon[] backpack;   // TO EDIT
-        public int numItems;        // TO EDIT
 
         public Player(String n, double m)
         {
             name = n;
             money = m;
-            numItems = 0;
-            backpack = new Weapon[10];
             bp = new Backpack(38, 0.8);
         }
 
-        // TO DO: MODIFY METHOD TO USE proper backpack & modify backpack to add to linked list
+        // MODIFIED: Uses backpack add method
         public void buy(Weapon w)
-        {
+        {       
             bp.buy(w);
             System.out.println(w.weaponName+" bought...");
-            
-            
-            backpack[numItems] = w;
-            numItems++;
             System.out.println(bp.getnumItems());
         }
         public void withdraw(double amt)
@@ -40,8 +31,8 @@ class Player
             return (bp.getnumItems() == 30) ;
         }
         
-        public boolean overWeight(){
-            return (bp.getcurrWeight() < 90);
+        public boolean overWeight(double weight){
+            return (bp.weightCheck(weight));
         }
 
         public void printCharacter()
@@ -50,14 +41,18 @@ class Player
             printBackpack();
         }
 
+        // TO EDIT: get string from backpack object & print
         public void printBackpack()
         {
+            System.out.println(" " + name + ", you own " + bp.getnumItems() + " Weapons:");
+            /*
              System.out.println(" "+name+", you own "+numItems+" Weapons:");
-            for (int x = 0; x < numItems; x++)
+            for (int x = 0; x < bp.getnumItems(); x++)
             {
                  System.out.println(" "+backpack[x].weaponName);
             }
             System.out.println();
+            */
         }
     }
 

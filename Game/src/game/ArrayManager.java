@@ -24,7 +24,7 @@ public class ArrayManager {
         {
             if ((numItems/maxItems) < loadFactor){
                 
-                qp.add(table, item, quantity);
+                qp.addShop(table, item, quantity);
                 numItems++;
             }
         }
@@ -32,19 +32,20 @@ public class ArrayManager {
         // MODIFIED: Checks if item exists in array using hash function and returns it
         public ShopItem get(String key)
         {
-            ShopItem toReturn = qp.get(table, key);
+            ShopItem toReturn = qp.getShop(table, key);
             return toReturn;
         }
         
         // ADDED: DELETE FUNCTION, TO DO: DELETE MENU
         public boolean delete(String key){
             
-            boolean toReturn = qp.delete(table, key);
+            boolean toReturn = qp.deleteShop(table, key);
             numItems--;
             return toReturn;
         }
 
-        // MODIFIED: Changes output depending if delete or buy 
+        // MODIFIED: Changes output depending if delete or buy
+        // BUY WILL SHOW ITEMS IN STOCK
         // DELETE WILL SHOW ITEMS WITH 0 STOCK
         public void printTable(String s)
         {

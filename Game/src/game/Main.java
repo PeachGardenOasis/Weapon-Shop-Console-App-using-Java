@@ -24,6 +24,7 @@ public class Main {
             }
             return sc.nextDouble();
         }
+        
         // validate 0-10
         public static int validateRangeInput(Scanner sc, String message, int lower, int upper) {
         System.out.print(message);
@@ -42,7 +43,6 @@ public class Main {
         }
     }
 
-    
         public static void addWeapons(ArrayManager h,Scanner sc)
         {
             System.out.println("***********WELCOME TO THE WEAPON ADDING MENU*********");
@@ -100,16 +100,19 @@ public class Main {
             String choice;
             showRoomMenu(ht,p);
             choice=sc.next();
-            while (choice.compareTo("end") != 0 && !p.inventoryFull() && p.overWeight() == true)
+            while (choice.compareTo("end") != 0 && !p.inventoryFull())
             {
                 ShopItem si = ht.get(choice);
                 if (si != null)
                 {
-
+                    if (p.overWeight(si.item.weight)){ // Checks if item will exceed weight limit
                         p.buy(si.item);
                         p.withdraw(si.item.cost);
                         si.numberInStock--;
- 
+                    }
+                    else {
+                        System.out.println("Weapon: " + si.item.weaponName + " will exceed weight limit");
+                    }
                 }
                 else
                 {
@@ -129,6 +132,7 @@ public class Main {
         System.out.println("5) View Player");
         System.out.println("6) Exit");
     }
+        
         public static void getDecision(ArrayManager ht, Player pl, Scanner sc) {
         String choice = "";
         while (!choice.equals("6")) {

@@ -9,9 +9,9 @@ public class Backpack {
     private double currWeight;
     private double maxWeight;
     //use a hash table implemented as separate chaining to hold the items (weapons) bought.
-    private LinkedList[] table; 
+    private LinkedList[] table;     // The array to store weapons
     private double loadFactor;
-    private QuadraticProbing qp;
+    private QuadraticProbing qp;    // The hash function & methods
 
     public Backpack(int size, double lf) {
         numItems = 0;
@@ -27,31 +27,21 @@ public class Backpack {
         return numItems;
     }
     
-    public double getcurrWeight(){
-        return currWeight;
+    public boolean weightCheck(double weight){
+        if (((maxWeight - currWeight) - weight) >= 0){
+            return true;
+        } 
+        return false;
     }
     
     // TO DO: ADD BUY METHOD
-    public boolean buy(Weapon w){
+    public void buy(Weapon w){
         
-        // Checks the amount of items in the bag & the weight
-        if ((numItems/maxItems) < loadFactor && ((maxWeight - currWeight) - w.weight) >= 0){
-            int loc = qp.quadhashFunction2(w.weaponName);
-            
-            if (table[loc] == null){
-                LinkedList temp = new LinkedList();
-                table[loc] = temp;
-                table[loc].addFront(w);
-            }
-            else {
-                table[loc].addLast(w);
-            }
+        // Checks the amount of items in the bag
+        if ((numItems/maxItems) < loadFactor){
+            qp.addBackpack(table, w);
             currWeight = currWeight + w.weight;
             numItems++;
-            return true;
-        }
-        else {
-            return false;
         }
     }
 }
