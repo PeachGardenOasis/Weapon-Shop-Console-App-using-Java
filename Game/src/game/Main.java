@@ -49,7 +49,7 @@ public class Main {
             String weaponName; int weaponRange; int weaponDamage; double weaponWeight; double weaponCost;
             int quantity;
             System.out.print("Please enter the NAME of the Weapon ('end' to quit):");
-            weaponName=sc.next();
+            weaponName=sc.next().toLowerCase();
             while (weaponName.compareTo("end") != 0)
             {
                 weaponRange= getInteger(sc,"Please enter the Range of the Weapon (0-10):"); 
@@ -74,10 +74,10 @@ public class Main {
             
             String choice;
             deleteWeaponMenu(ht);
-            choice = sc.next();
+            choice = sc.next().toLowerCase();
             while (choice.compareTo("end") != 0){
-                if(ht.delete(choice)){
-                    System.out.println(choice + " successfully deleted");
+                if(ht.delete(choice.toLowerCase())){
+                    System.out.println(choice.toLowerCase() + " successfully deleted");
                 }
                 else {
                     System.out.println("Failed to delete: " + choice);
@@ -99,7 +99,7 @@ public class Main {
         {
             String choice;
             showRoomMenu(ht,p);
-            choice=sc.next();
+            choice=sc.next().toLowerCase();
             while (choice.compareTo("end") != 0 && !p.inventoryFull())
             {
                 ShopItem si = ht.get(choice);
