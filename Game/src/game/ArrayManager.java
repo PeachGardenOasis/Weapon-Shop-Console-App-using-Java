@@ -54,13 +54,13 @@ public class ArrayManager {
             {   
                 if(s.compareTo("delete") == 0){
                     if(table[x] != null){
-                        System.out.println("Name: " +table[x].item.weaponName+"   Damage:"+table[x].item.damage+"    Cost:"+table[x].item.cost+"     Quantity in stock:"+table[x].numberInStock);
+                        System.out.println("Name: " +table[x].item.getWeaponName()+"   Damage:"+table[x].item.getDamage()+"    Cost:"+table[x].item.getCost()+"     Quantity in stock:"+table[x].numberInStock);
                     }
                 }
                 if(s.compareTo("buy") == 0){
                     // Lists all weapons in the shop that are in stock (greater than 0)
                     if(table[x] != null && table[x].numberInStock > 0){
-                        System.out.println("Name: " +table[x].item.weaponName+"   Damage:"+table[x].item.damage+"    Cost:"+table[x].item.cost+"     Quantity in stock:"+table[x].numberInStock);
+                        System.out.println("Name: " +table[x].item.getWeaponName()+"   Damage:"+table[x].item.getDamage()+"    Cost:"+table[x].item.getCost()+"     Quantity in stock:"+table[x].numberInStock);
                     }
                 }
             }
