@@ -26,6 +26,10 @@ class Player
             money = money - amt;
         }
 
+        public boolean fundsCheck(double cost){
+            return ((money - cost) >= 0);
+        }
+        
         public boolean inventoryFull()
         {
             return (bp.getnumItems() == 30) ;

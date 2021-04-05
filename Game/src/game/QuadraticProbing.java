@@ -9,16 +9,6 @@ public class QuadraticProbing {
         tableSize = size;
     }
     
-    public int quadhashFunction(Weapon w) {
-        int value=0,weight=1;
-        for(int i=0;i<w.weaponName.length();i++){
-            value+=(w.weaponName.charAt(i)-'a'+1)*weight;
-            weight++;
-        }
-        value += w.damage + w.range + w.weight + w.cost; // wasnt searching properly with this
-        return value % tableSize;
-    }
-    
     // Gives up on design of hash function to make search/get more simple
     private int quadhashFunction2(String w){
         int value = 0, weight = 1;
@@ -38,6 +28,11 @@ public class QuadraticProbing {
         // Hash Function Location
         int count = 1;
         int startLoc = quadhashFunction2(item.weaponName);
+        
+        if (startLoc < 0){
+            return;
+        }
+        
         int loc = startLoc;
         
         // Quadratic probing, finds empty location or location of matching item
@@ -61,6 +56,10 @@ public class QuadraticProbing {
         int startLoc = quadhashFunction2(key); // gets location in table based on key
         int loc = startLoc;
 
+        if (startLoc < 0){
+            return null;
+        }
+        
         // Exits when it finds an empty location or the matching item
         while (table[loc] != null && table[loc].item.weaponName.compareTo(key) != 0){
             loc = (startLoc + (count * count) % tableSize);
@@ -81,6 +80,10 @@ public class QuadraticProbing {
         int startLoc = quadhashFunction2(key);
         int loc = startLoc;
         
+        if (startLoc < 0){
+            return false;
+        }
+        
         while(table[loc] != null && table[loc].item.weaponName.compareTo(key) != 0){
             loc = (startLoc + (count * count) % tableSize);
             count++;
@@ -97,6 +100,10 @@ public class QuadraticProbing {
     // Uses seperate chaining
     public void addBackpack(LinkedList[] table, Weapon item){
         int loc = quadhashFunction2(item.weaponName);
+        
+        if (loc < 0) {
+            return;
+        }
         
         if (table[loc] == null){
             LinkedList temp = new LinkedList();

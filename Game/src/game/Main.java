@@ -105,13 +105,18 @@ public class Main {
                 ShopItem si = ht.get(choice);
                 if (si != null)
                 {
-                    if (p.overWeight(si.item.weight)){ // Checks if item will exceed weight limit
-                        p.buy(si.item);
-                        p.withdraw(si.item.cost);
-                        si.numberInStock--;
+                    if (p.fundsCheck(si.item.cost)) {       // Checks funds
+                        if (p.overWeight(si.item.weight)){  // Checks if item will exceed weight limit
+                            p.buy(si.item);
+                            p.withdraw(si.item.cost);
+                            si.numberInStock--;
+                        }
+                        else {
+                            System.out.println("Weapon: " + si.item.weaponName + " will exceed weight limit");
+                        }
                     }
                     else {
-                        System.out.println("Weapon: " + si.item.weaponName + " will exceed weight limit");
+                        System.out.println("Do not have enough funds for weapon: " + si.item.weaponName);
                     }
                 }
                 else
