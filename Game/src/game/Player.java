@@ -18,7 +18,7 @@ class Player
         public void buy(Weapon w)
         {       
             bp.buy(w);
-            System.out.println(w.weaponName+" bought...");
+            System.out.println(w.getWeaponName()+" bought...");
             System.out.println(bp.getnumItems());
         }
         public void withdraw(double amt)

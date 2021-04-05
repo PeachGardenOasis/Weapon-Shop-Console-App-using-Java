@@ -27,7 +27,7 @@ public class QuadraticProbing {
         
         // Hash Function Location
         int count = 1;
-        int startLoc = quadhashFunction2(item.weaponName);
+        int startLoc = quadhashFunction2(item.getWeaponName());
         
         if (startLoc < 0){
             return;
@@ -36,13 +36,13 @@ public class QuadraticProbing {
         int loc = startLoc;
         
         // Quadratic probing, finds empty location or location of matching item
-        while (table[loc] != null && table[loc].item.weaponName.compareTo(item.weaponName) != 0){  
+        while (table[loc] != null && table[loc].item.getWeaponName().compareTo(item.getWeaponName()) != 0){  
             loc = (startLoc + (count * count) % tableSize);
             count++;
         }
         
         // Checks if item at location has matching name, adds stock if true
-        if (table[loc] != null && table[loc].item.weaponName.compareTo(item.weaponName) == 0){
+        if (table[loc] != null && table[loc].item.getWeaponName().compareTo(item.getWeaponName()) == 0){
             table[loc].numberInStock = table[loc].numberInStock + quantity;
             return;
         }
@@ -61,13 +61,13 @@ public class QuadraticProbing {
         }
         
         // Exits when it finds an empty location or the matching item
-        while (table[loc] != null && table[loc].item.weaponName.compareTo(key) != 0){
+        while (table[loc] != null && table[loc].item.getWeaponName().compareTo(key) != 0){
             loc = (startLoc + (count * count) % tableSize);
             count++;
         }
 
         // If the location's element matches the item, return the item
-        if (table[loc] != null && table[loc].item.weaponName.compareTo(key) == 0){
+        if (table[loc] != null && table[loc].item.getWeaponName().compareTo(key) == 0){
             return table[loc];
         }
 
@@ -84,12 +84,12 @@ public class QuadraticProbing {
             return false;
         }
         
-        while(table[loc] != null && table[loc].item.weaponName.compareTo(key) != 0){
+        while(table[loc] != null && table[loc].item.getWeaponName().compareTo(key) != 0){
             loc = (startLoc + (count * count) % tableSize);
             count++;
         }
         
-        if (table[loc] != null && table[loc].item.weaponName.compareTo(key) == 0){
+        if (table[loc] != null && table[loc].item.getWeaponName().compareTo(key) == 0){
             table[loc] = null;
             return true;
         }
@@ -99,7 +99,7 @@ public class QuadraticProbing {
     
     // Uses seperate chaining
     public void addBackpack(LinkedList[] table, Weapon item){
-        int loc = quadhashFunction2(item.weaponName);
+        int loc = quadhashFunction2(item.getWeaponName());
         
         if (loc < 0) {
             return;

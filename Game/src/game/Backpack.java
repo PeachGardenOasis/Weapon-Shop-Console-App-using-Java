@@ -42,7 +42,7 @@ public class Backpack {
         // Checks the amount of items in the bag
        if ((numItems/maxItems) < loadFactor){
             qp.addBackpack(table, w);
-            currWeight += w.weight;
+            currWeight += w.getWeight();
             numItems++;
         }
     }

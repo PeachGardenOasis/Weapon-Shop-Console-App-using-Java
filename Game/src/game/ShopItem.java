@@ -13,6 +13,6 @@ public class ShopItem {
     
     @Override
     public String toString() {
-        return ("Name: " + item.weaponName + "   Damage:" + item.damage + "    Cost:" + item.cost + "     Quantity in stock:" + numberInStock);
+        return ("Name: " + item.getWeaponName() + "   Damage:" + item.getDamage() + "    Cost:" + item.getCost() + "     Quantity in stock:" + numberInStock);
     }
 }
