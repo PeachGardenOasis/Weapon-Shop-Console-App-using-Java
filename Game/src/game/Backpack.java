@@ -40,23 +40,8 @@ public class Backpack {
     public void buy(Weapon w){
         
         // Checks the amount of items in the bag
-//        if ((numItems/maxItems) < loadFactor){ *Legacy code
-//            qp.addBackpack(table, w);
-//            currWeight = currWeight + w.weight;
-//            numItems++;
-
-        if ((numItems / maxItems) < loadFactor) {
-
-            int startPos = qp.quadhashFunction(w);
-            int counter = 1;
-            int pos = startPos;
-            while (table[pos] != null && table[pos].head.data.weaponName.compareTo(w.weaponName) != 0) {
-                pos = (startPos + counter * counter) % maxItems;
-                counter++;
-            }
-            
-            table[pos] = new LinkedList();
-            table[pos].addFront(w);
+       if ((numItems/maxItems) < loadFactor){
+            qp.addBackpack(table, w);
             currWeight += w.weight;
             numItems++;
         }
