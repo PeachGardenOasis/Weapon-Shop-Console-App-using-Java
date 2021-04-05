@@ -91,7 +91,7 @@ public class Main {
         public static void showRoomMenu(ArrayManager ht,Player p){
             System.out.println("WELCOME TO THE SHOWROOM!!!!");
             ht.printTable("buy");
-            System.out.println("You have "+p.money+" money.");
+            System.out.println("You have "+p.getMoney()+" money.");
             System.out.println("Please select a weapon to buy('end' to quit):");
         }
         

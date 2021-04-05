@@ -3,9 +3,9 @@ package game;
 // Chi Calvin Nguyen 101203877
 class Player
     {
-        public String name;
-        public double money;
-        public Backpack bp;
+        private String name;
+        private double money;
+        private Backpack bp;
 
         public Player(String n, double m)
         {
@@ -24,6 +24,14 @@ class Player
         public void withdraw(double amt)
         {
             money = money - amt;
+        }
+        
+        public String getName(){
+            return name;
+        }
+        
+        public double getMoney(){
+            return money;
         }
 
         public boolean fundsCheck(double cost){
