@@ -19,7 +19,8 @@ public class QuadraticProbing {
         return value % tableSize;
     }
     
-    public int quadhashFunction2(String w){
+    // Gives up on design of hash function to make search/get more simple
+    private int quadhashFunction2(String w){
         int value = 0, weight = 1;
         
         for (int i = 0; i < w.length(); i++){
@@ -31,7 +32,8 @@ public class QuadraticProbing {
         return value % tableSize;
     }
     
-    public void add(ShopItem[] table, Weapon item, int quantity){
+    // Uses quadratic probing
+    public void addShop(ShopItem[] table, Weapon item, int quantity){
         
         // Hash Function Location
         int count = 1;
@@ -53,9 +55,8 @@ public class QuadraticProbing {
         table[loc] = new ShopItem(item,quantity);
     }
     
-    public ShopItem get(ShopItem[] table, String key){
+    public ShopItem getShop(ShopItem[] table, String key){
         
-        // Lowers complexity of hash function for faster get method
         int count = 1;
         int startLoc = quadhashFunction2(key); // gets location in table based on key
         int loc = startLoc;
@@ -74,7 +75,7 @@ public class QuadraticProbing {
         return null;
     }
     
-    public boolean delete(ShopItem[] table, String key){
+    public boolean deleteShop(ShopItem[] table, String key){
         
         int count = 1;
         int startLoc = quadhashFunction2(key);
@@ -91,5 +92,19 @@ public class QuadraticProbing {
         }
 
         return false;
+    }
+    
+    // Uses seperate chaining
+    public void addBackpack(LinkedList[] table, Weapon item){
+        int loc = quadhashFunction2(item.weaponName);
+        
+        if (table[loc] == null){
+            LinkedList temp = new LinkedList();
+            table[loc] = temp;
+            table[loc].addFront(item);
+        }
+        else {
+            table[loc].addLast(item);
+        }
     }
 }
