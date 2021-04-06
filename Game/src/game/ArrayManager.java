@@ -3,50 +3,69 @@ package game;
 // Chi Calvin Nguyen 101203877
 
 public class ArrayManager {
-    
-        int maxItems;                   // records the max size of the table
-        int numItems;                   // records number of items in the list
-        ShopItem[] table;               // hashtable itself
-        public double loadFactor;       // load factor of hash table
-        private QuadraticProbing qp;    // hash function
         
+        // Class Fields
+        private int maxItems;               // records the max size of the table
+        private int numItems;               // records number of items in the list
+        private ShopItem[] table;           // hashtable itself
+        private double loadFactor;          // load factor of hash table
+        private HashFunctionMethods hfm;    // hash function & methods
+        
+        /*
+            Constructor
+        */
         public ArrayManager(int size, double loadFactor)
         {
             maxItems = size;
             numItems = 0;
             table = new ShopItem[maxItems];
             this.loadFactor = loadFactor;
-            qp = new QuadraticProbing(maxItems);
+            hfm = new HashFunctionMethods(maxItems);
         }
         
-        // MODIFIED: Hash Function, Check for existing items & Quadratic Probing
+        /*
+            put() method adds weapon object to the hash table
+                if numItems is less than the loadFactor of maxItems
+            Passes the weapon, hash table, & quantity to hfm.addShop()
+                Purpose is to keep the hash function itself private
+        */
         public void put(Weapon item,int quantity)
         {
             if ((numItems/maxItems) < loadFactor){
                 
-                qp.addShop(table, item, quantity);
+                hfm.addShop(table, item, quantity);
                 numItems++;
             }
         }
 
-        // MODIFIED: Checks if item exists in array using hash function and returns it
+        /*
+            get() method uses a string and returns the ShopItem if found
+            Passes the string & table to hfm.getShop()
+                Purpose is to keep the hash function itself private
+        */
         public ShopItem get(String key)
         {
-            ShopItem toReturn = qp.getShop(table, key);
+            ShopItem toReturn = hfm.getShop(table, key);
             return toReturn;
         }
         
-        // ADDED: DELETE FUNCTION, TO DO: DELETE MENU
+        /*
+            delete() method uses a string and deletes the ShopItem if found
+            Passes the string & table to hfm.deleteShop()
+                Purpose is to keep the hash function itself private
+        */
         public boolean delete(String key){
             
-            boolean toReturn = qp.deleteShop(table, key);
+            boolean toReturn = hfm.deleteShop(table, key);
             numItems--;
             return toReturn;
         }
 
-        // MODIFIED: Changes output depending if delete or buy
-        // BUY WILL SHOW ITEMS IN STOCK
-        // DELETE WILL SHOW ITEMS WITH 0 STOCK
+        /*
+            printTable() method receives a string
+                If the string is "buy" then it prints items IN STOCK
+                If the string is "delete" then it prints ALL items
+        */
         public void printTable(String s)
         {
             int count = 0;

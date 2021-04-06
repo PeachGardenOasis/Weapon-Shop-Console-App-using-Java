@@ -4,9 +4,13 @@ package game;
 
 public class Node {
 
+    // Class fields
     public Weapon data;
     public Node next;
 
+    /*
+        Constructor
+    */
     public Node(Weapon data) {
         this.data = data;
         next = null;

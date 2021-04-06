@@ -3,9 +3,13 @@ package game;
 // Chi Calvin Nguyen 101203877
 public class ShopItem {
 
-    Weapon item;
-    int numberInStock;
+    // Class fields
+    Weapon item;            // Weapon object
+    int numberInStock;      // stock of the weapon object
 
+    /*
+        Constructor
+    */
     public ShopItem(Weapon w, int nInStock) {
         item = w;
         numberInStock = nInStock;
