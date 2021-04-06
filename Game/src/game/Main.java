@@ -106,7 +106,7 @@ public class Main {
                 if (si != null)
                 {
                     if (p.fundsCheck(si.item.getCost())) {       // Checks funds
-                        if (p.overWeight(si.item.getWeight())){  // Checks if item will exceed weight limit
+                        if (p.weightCheck(si.item.getWeight())){  // Checks if item will exceed weight limit
                             p.buy(si.item);
                             p.withdraw(si.item.getCost());
                             si.numberInStock--;

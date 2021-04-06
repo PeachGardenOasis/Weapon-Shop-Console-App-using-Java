@@ -34,16 +34,16 @@ class Player
             return money;
         }
 
-        public boolean fundsCheck(double cost){
-            return ((money - cost) >= 0);
-        }
-        
         public boolean inventoryFull()
         {
             return (bp.getnumItems() == 30) ;
         }
         
-        public boolean overWeight(double weight){
+        public boolean fundsCheck(double cost){
+            return ((money - cost) >= 0);
+        }
+        
+        public boolean weightCheck(double weight){
             return (bp.weightCheck(weight));
         }
 
